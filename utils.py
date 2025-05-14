@@ -1,3 +1,4 @@
+"""Module with basic calculator functions: add, subtract, multiply, divide."""
 def add(a: int, b: int) -> int:
     """Add two numbers."""
     return a + b
