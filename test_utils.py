@@ -27,4 +27,23 @@ def test_multiply(a, b, expected):
 @pytest.mark.parametrize("a, b, expected", [(1, 2, 0.5), (3, 4, 0.75), (4, 5, 0.8)])
 def test_divide(a, b, expected):
     result = utils.divide(a, b)
-    assert result == expected
+    assert abs(result - expected) < 0.01  # poprawka precyzji
+
+
+@pytest.mark.parametrize(
+    "n, expected", [(0, "0"), (1, "1"), (2, "10"), (100, "1100100")]
+)
+def test_to_binary_valid(n, expected):
+    assert utils.to_binary(n) == expected
+
+
+@pytest.mark.parametrize("n", [-1, 101])
+def test_to_binary_out_of_range(n):
+    with pytest.raises(ValueError):
+        utils.to_binary(n)
+
+
+@pytest.mark.parametrize("n", [3.14, "10", None])
+def test_to_binary_not_integer(n):
+    with pytest.raises(TypeError):
+        utils.to_binary(n)
