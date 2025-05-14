@@ -32,6 +32,9 @@ def test_divide(a, b, expected):
     )
 
 
+@pytest.mark.parametrize(
+    "n, expected", [(0, "0"), (1, "1"), (2, "10"), (100, "1100100")]
+)
 def test_to_binary_valid(n, expected):
     assert utils.to_binary(n) == expected
 
